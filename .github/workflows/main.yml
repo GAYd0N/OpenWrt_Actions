@@ -31,6 +31,7 @@ jobs:
       - name: update feeds
         run: |
             run: |
+              cd openwrt
               cat >> feeds.conf.default <<EOF
               src-git openclash https://github.com/vernesong/OpenClash.git
               EOF
@@ -40,6 +41,7 @@ jobs:
 
       - name: build config
         run: |
+         cd openwrt
          rm -f ./.config*
          touch ./.config
 
@@ -340,6 +342,7 @@ jobs:
 
       - name: build openwrt
         run: |
+         cd openwrt
          make defconfig
          make download -j8
          make V=s -j$(nproc)
