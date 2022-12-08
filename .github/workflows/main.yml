@@ -8,14 +8,11 @@ on:
 jobs:
   build_openwrt:
     name: Build OpenWrt
-
     runs-on: ubuntu-latest
-
     steps:
     
       - name: Setup build environment
         run: |
-         sudo apt -y purge azure-cli ghc* zulu* hhvm llvm* firefox* google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* 
          sudo apt update -y && sudo apt upgrade -y
          sudo apt autoremove -y
          sudo apt install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc-s1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig libtinfo5 -y
