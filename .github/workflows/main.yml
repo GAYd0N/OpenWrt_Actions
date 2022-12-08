@@ -22,7 +22,7 @@ jobs:
          sudo apt install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc-s1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig libtinfo5 -y
 
       - name: pull openwrt-22.03
-         run:  |
+        run: |
          git clone -b openwrt-22.03 https://github.com/openwrt/openwrt.git
          cd openwrt
 
