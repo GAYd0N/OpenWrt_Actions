@@ -1,6 +1,6 @@
 # OpenWrt_Actions
 
-Github Actions自动编译OpenWrt-22.03(x86_64)固件
+自动编译OpenWrt-22.03(x86_64)固件
 
 * [固件下载](https://github.com/GAYd0N/OpenWrt_Actions/releases/tag/v22.03snapshot)
 
