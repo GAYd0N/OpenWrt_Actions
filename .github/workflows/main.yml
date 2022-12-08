@@ -1,8 +1,4 @@
-
-name: OpenWrt-github-actions
-
-
-
+name: Build OpenWrt
 
 on:
   workflow_dispatch:
@@ -16,20 +12,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: setup build environment
+    
+      - name: Setup build environment
         run: |
-         sudo -E apt -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* || true
+         sudo apt -y purge azure-cli ghc* zulu* hhvm llvm* firefox* google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* 
          sudo apt update -y && sudo apt upgrade -y
          sudo apt autoremove -y
-         sudo apt install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc-s1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig libtinfo5 libpam liblzma libnetsnmp -y
+         sudo apt install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc-s1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig libtinfo5 -y
 
-      - name: pull openwrt-22.03
+      - name: Pull OpenWrt-22.03
         run: |
          git clone -b openwrt-22.03 https://github.com/openwrt/openwrt.git
-         cd openwrt
+       
 
-      - name: update feeds
+      - name: Update feeds
         run: |
             run: |
               cd openwrt
@@ -40,7 +36,7 @@ jobs:
               ./scripts/feeds install -a
 
 
-      - name: build config
+      - name: Make config
         run: |
          cd openwrt
          rm -f ./.config*
@@ -341,7 +337,7 @@ jobs:
          CONFIG_WPA_MSG_MIN_PRIORITY=3
 
 
-      - name: build openwrt
+      - name: Build OpenWrt
         run: |
          cd openwrt
          make defconfig
