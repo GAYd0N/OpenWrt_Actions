@@ -4,6 +4,7 @@ name: OpenWrt-github-actions
 
 
 on:
+  workflow_dispatch:
   schedule:
   - cron: "0 2 * * ?"
 
