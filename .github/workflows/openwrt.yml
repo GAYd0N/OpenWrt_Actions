@@ -341,33 +341,13 @@ jobs:
          make download -j8
          make V=s -j$(nproc)
 
-      
-      
-        
-        
-          
-          
-
-      
-       
-        
-        
-
-
-
-       
-
-          
-
-
+    
       - name: Upload release asset
         if: github.event == 'release'
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.YOURTOKEN }}
-          file: ./bin/targets/x86_
-          
-
+          file: ./bin/targets/x86_64/64/*
           tag: ${{ github.ref }}
           file_glob: true
 
