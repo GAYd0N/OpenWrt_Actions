@@ -347,7 +347,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.YOURTOKEN }}
-          file: /home/runner/work/OpenWrt_Actions/OpenWrt_Actions/openwrt/bin/targets/x86/64/*
+          file: ./openwrt/bin/targets/x86/64/*
           tag: ${{ github.ref }}
           file_glob: true
 
