@@ -344,11 +344,10 @@ jobs:
     
       - name: Upload release asset
         if: github.event == 'release'
-        run: cd openwrt
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.YOURTOKEN }}
-          file: ./bin/targets/x86/64/*
+          file: /home/runner/work/OpenWrt_Actions/OpenWrt_Actions/openwrt/bin/targets/x86/64/*
           tag: ${{ github.ref }}
           file_glob: true
 
