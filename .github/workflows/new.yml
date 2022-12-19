@@ -1,0 +1,39 @@
+name: Build OpenWrt
+
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: "0 2 * * ?"
+
+jobs:
+  build_openwrt:
+    name: Build OpenWrt
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Setup build environment
+        run: |
+         sudo apt update -y && sudo apt upgrade -y
+         sudo apt install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc-s1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig libtinfo5 -y
+
+      - name: Pull OpenWrt-22.03
+        run: |
+         git clone -b openwrt-22.03 https://github.com/openwrt/openwrt.git
+       
+      - name: list file
+        run: ls
+      
+    
+      - name: Upload release asset
+        if: github.event == 'release'
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.YOURTOKEN }}
+          file: ./openwrt/bin/targets/x86/64/*
+          tag: ${{ github.ref }}
+          file_glob: true
+
+
+
+
+
